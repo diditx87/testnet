@@ -22,6 +22,19 @@ EOF
   chmod 600 "$ENV_FILE"
 }
 
+open_port(){
+    sudo ufw allow 8545/tcp
+    sudo ufw allow 3500/tcp
+    sudo ufw allow 4000/tcp
+    sudo ufw allow 30303/tcp
+    sudo ufw allow 30303/udp
+    sudo ufw allow 12000/udp
+    sudo ufw allow 13000/tcp
+    sudo ufw allow 22/tcp
+    sudo ufw allow 443/tcp
+    sudo ufw enable
+}
+
 install_dependencies() {
   echo "Checking for package manager locks and terminating any blocking processes..."
   # Detect and kill processes holding apt/dpkg locks
@@ -160,6 +173,7 @@ echo "6) Change RPC"
 echo "7) Delete Node Data"
 echo "8) Full Clean"
 echo "9) Reinstall Node"
+echo "10) Open Port"
 echo "x) Exit"
 read -rp "Select: " choice
 
@@ -173,6 +187,7 @@ case "$choice" in
   7) wipe_data ;;
   8) full_clean ;;
   9) reinstall_node ;;
+  10) open_port ;;
   x|X) exit 0 ;;
   *) exit 1 ;;
 esac
