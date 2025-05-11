@@ -22,3 +22,6 @@ Run script
 
 Pilih `Get Role Apprentice`
 Register Validator on discord
+```bash
+/operator start
+```
